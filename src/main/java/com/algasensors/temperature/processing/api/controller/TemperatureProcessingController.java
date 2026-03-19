@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.OffsetDateTime;
+import java.util.UUID;
 
 import static com.algasensors.temperature.processing.infra.rabbitmq.RabbitMQConfig.FANOUT_EXCHANGE_NAME;
 
@@ -39,6 +40,7 @@ public class TemperatureProcessingController {
 
         TemperatureLogOutput logoutput = TemperatureLogOutput
                 .builder()
+                .id(UUID.randomUUID())
                 .sensorId(sensorId)
                 .value(temperature)
                 .registeredAt(OffsetDateTime.now())
